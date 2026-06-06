@@ -83,6 +83,15 @@ nav{position:sticky;top:0;z-index:200;background:var(--nav-bg);backdrop-filter:b
 .ntab-c.active{color:#fde047;background:var(--tc-bg)}
 .ntab-d.active{color:#fdba74;background:var(--td-bg)}
 .ntab-special.active{color:var(--text);background:var(--surface3);border:1px solid var(--border2)}
+/* Class tab colors */
+.ntab-cls-X.active{color:#fca5a5;background:var(--tx-bg)}
+.ntab-cls-SS.active{color:#c4b5fd;background:var(--tss-bg)}
+.ntab-cls-S.active{color:#86efac;background:var(--ts-bg)}
+.ntab-cls-A.active{color:#93c5fd;background:var(--ta-bg)}
+.ntab-cls-B.active{color:#fcd34d;background:var(--tb-bg)}
+.ntab-cls-C.active{color:#fde047;background:var(--tc-bg)}
+.ntab-cls-D.active{color:#fdba74;background:var(--td-bg)}
+.ntab-cls-E.active{color:#a1a1aa;background:rgba(161,161,170,0.1)}
 .nav-right{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .sb{position:relative}
 .sb input{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:5px 9px 5px 25px;font-size:12px;color:var(--text);font-family:'Inter',sans-serif;outline:none;width:140px;transition:width .2s,border-color .2s}
@@ -191,6 +200,31 @@ tr:hover td{background:var(--surface2)}
 .page-header{margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 .page-header h1{font-size:24px;font-weight:400;font-style:italic;margin-bottom:4px}
 .page-header p{font-size:13px;color:var(--text-muted)}
+/* CLASS PAGE */
+.class-intro{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 18px;margin-bottom:22px;font-size:13px;color:var(--text-muted);line-height:1.6}
+.class-intro strong{color:var(--text)}
+.cls-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+.cls-nav-btn{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:500;font-family:'DM Mono',monospace;cursor:pointer;border:1px solid var(--border2);background:transparent;color:var(--text-muted);transition:all .14s}
+.cls-nav-btn:hover{color:var(--text);border-color:var(--text-dim)}
+.cls-nav-btn.active{color:var(--text)}
+.cls-nav-btn.cnb-X.active{background:var(--tx-bg);border-color:var(--tx-b);color:#fca5a5}
+.cls-nav-btn.cnb-SS.active{background:var(--tss-bg);border-color:var(--tss-b);color:#c4b5fd}
+.cls-nav-btn.cnb-S.active{background:var(--ts-bg);border-color:var(--ts-b);color:#86efac}
+.cls-nav-btn.cnb-A.active{background:var(--ta-bg);border-color:var(--ta-b);color:#93c5fd}
+.cls-nav-btn.cnb-B.active{background:var(--tb-bg);border-color:var(--tb-b);color:#fcd34d}
+.cls-nav-btn.cnb-C.active{background:var(--tc-bg);border-color:var(--tc-b);color:#fde047}
+.cls-nav-btn.cnb-D.active{background:var(--td-bg);border-color:var(--td-b);color:#fdba74}
+.cls-nav-btn.cnb-E.active{background:rgba(161,161,170,.1);border-color:rgba(161,161,170,.2);color:#a1a1aa}
+.class-section{margin-bottom:28px}
+.class-hero{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:14px 18px;border-radius:var(--radius);border:1px solid var(--border)}
+.class-hero-badge{font-family:'DM Mono',monospace;font-size:18px;font-weight:700;padding:6px 14px;border-radius:8px;flex-shrink:0}
+.class-hero-info{flex:1}
+.class-hero-name{font-size:16px;font-weight:500;color:var(--text);margin-bottom:3px}
+.class-hero-desc{font-size:12px;color:var(--text-muted);line-height:1.5}
+.class-hero-cnt{font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);flex-shrink:0;text-align:right}
+.class-hero-cnt span{display:block;font-size:18px;font-weight:500;color:var(--text-muted)}
+/* Tier column highlight for class view */
+.td-tier{text-align:center}
 .trade-grid{display:grid;grid-template-columns:1fr 46px 1fr;gap:12px;align-items:start}
 .trade-side{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius)}
 .side-top{padding:13px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
@@ -323,6 +357,7 @@ tr:hover td{background:var(--surface2)}
     <button class="ntab ntab-b" onclick="showTier('B')">B</button>
     <button class="ntab ntab-c" onclick="showTier('C')">C</button>
     <button class="ntab ntab-d" onclick="showTier('D')">D</button>
+    <button class="ntab ntab-special" onclick="showClassPage()">🏷️ Class</button>
     <button class="ntab ntab-special" onclick="showTrade()">⇄ Trade</button>
     <button class="ntab ntab-special" onclick="showUpdates()">📋 Updates</button>
     <button class="ntab ntab-special" onclick="showWishlist()">⭐ Wishlist</button>
@@ -368,6 +403,7 @@ tr:hover td{background:var(--surface2)}
 <main>
   <div id="home-page" class="all-page active"></div>
   <div id="tier-page" class="all-page"></div>
+  <div id="class-page" class="all-page"></div>
   <div id="trade-page" class="trade-page">
     <div class="page-header"><h1>Trade Calculator</h1><p>Add gloves to both sides and get a Win / Fair / Lose verdict based on value.</p></div>
     <div class="trade-grid">
@@ -659,6 +695,27 @@ const GLOVES=[
 {n:"Uno",v:0.5,vs:"0.5 Blox",d:"Good/Decent",t:"D",cls:"A",how:"Shop 44k B$ / Chest (Golden)",trend:"stable"},
 {n:"Full Metal",v:0.5,vs:"0.5 Blox",d:"Good/Decent",t:"D",cls:"C",how:"Chest (Gold + Silver + Common)",trend:"stable"}
 ];
+
+const CLASS_META = {
+  X:  { label:"X Class", color:"#dc2626", bg:"#1c0a0a", border:"rgba(220,38,38,0.2)",  pillColor:"#fca5a5",
+         desc:"The absolute elite. X Class gloves are unobtainable ultra-rares — either never craftable or formerly sold for thousands of Robux. These sit above all standard tiers and represent the pinnacle of the market." },
+  SS: { label:"SS Class", color:"#7c3aed", bg:"#110a1c", border:"rgba(124,58,237,0.2)", pillColor:"#c4b5fd",
+         desc:"Super-S Class — one step below X but still elite-tier collectibles. SS Class gloves are unobtainable and previously commanded 7k–10k Robux or rare support rewards." },
+  S:  { label:"S Class",  color:"#16a34a", bg:"#0a1c0e", border:"rgba(22,163,74,0.2)",  pillColor:"#86efac",
+         desc:"Standard S Class — top-shelf obtainable gloves. Many are craftable from other S-tier items or found in high-rarity chests. Solid demand across the board." },
+  A:  { label:"A Class",  color:"#2563eb", bg:"#0a0e1c", border:"rgba(37,99,235,0.2)",  pillColor:"#93c5fd",
+         desc:"A Class gloves make up the bulk of the mid-to-high market. Mostly unobtainable legacy items or craftable combos. Reliable for trading but not always in demand." },
+  B:  { label:"B Class",  color:"#d97706", bg:"#1c120a", border:"rgba(217,119,6,0.2)",  pillColor:"#fcd34d",
+         desc:"B Class covers notable items that appear across multiple tiers. Chocos, Korone, Violin — gloves with name recognition but mid-market demand." },
+  C:  { label:"C Class",  color:"#ca8a04", bg:"#1a130a", border:"rgba(202,138,4,0.2)",  pillColor:"#fde047",
+         desc:"C Class items are generally harder-to-get budget pieces — limited chest drops, 20 Robux purchases, or craft-heavy builds. Useful but low demand." },
+  D:  { label:"D Class",  color:"#ea580c", bg:"#1c0e0a", border:"rgba(234,88,12,0.2)",  pillColor:"#fdba74",
+         desc:"D Class is the unstable or unranked tier — items like Blueprint and Wildcard whose values fluctuate heavily. Approach with caution." },
+  E:  { label:"E Class",  color:"#71717a", bg:"#111113", border:"rgba(113,113,122,0.2)", pillColor:"#a1a1aa",
+         desc:"E Class contains the most common gloves — Motorcycle, Poopium, Po0p. Low value, low demand, but used as crafting fodder for higher-tier items." }
+};
+const CLASS_ORDER = ["X","SS","S","A","B","C","D","E"];
+
 const TMETA={
   X:{color:"#dc2626",bg:"#1c0a0a",border:"rgba(220,38,38,0.2)",label:"X Tier",note:"1 Currency = 50 Blox · MP5 > BIGGER"},
   SS:{color:"#7c3aed",bg:"#110a1c",border:"rgba(124,58,237,0.2)",label:"SS Tier",note:"1 Currency = 50 Blox · Chainsaw #108 > Nuclear #108"},
@@ -701,6 +758,8 @@ let wishlist=new Set(JSON.parse(localStorage.getItem('mbz-wl')||'[]'));
 let cmpItems=[];
 let activeFilters={demand:new Set(),trend:new Set()};
 let sortBy="default",sortDir=1;
+let activeClassFilter="ALL";
+
 function demClass(d){
   if(d.includes("Insane"))return"dem-Insane";
   if(d.includes("Good")&&d.includes("Decent"))return"dem-GoodDecent";
@@ -751,8 +810,9 @@ function demRank(d){
   let best=r.length;for(let i=0;i<r.length;i++)if(d.includes(r[i].split('/')[0]))best=Math.min(best,i);
   return best;
 }
-function buildTable(gloves,tier){
+function buildTable(gloves,showTierCol){
   if(!gloves.length)return`<div class="no-res">No gloves match your filters</div>`;
+  const tierColHeader = showTierCol ? '<th>Tier</th>' : '';
   const rows=gloves.map(g=>`<tr>
     <td style="text-align:center;white-space:nowrap">
       <button class="wish-btn${wishlist.has(g.n)?' wished':''}" onclick="toggleWish('${esc(g.n)}')" title="Wishlist">★</button>
@@ -764,6 +824,7 @@ function buildTable(gloves,tier){
     <td class="td-trend">${trendIcon(g.trend)}</td>
     <td class="td-how">${g.how}</td>
     <td class="td-cls"><span class="cpill cls-${g.cls}">${g.cls}</span></td>
+    ${showTierCol ? `<td class="td-tier"><span class="cpill cls-${g.t}">${g.t}</span></td>` : ''}
     <td><button class="add-btn" style="font-size:9px;padding:2px 5px" onclick="addCmp('${esc(g.n)}')" title="Compare">⊕</button></td>
   </tr>`).join('');
   return`<div class="table-wrap">
@@ -775,7 +836,7 @@ function buildTable(gloves,tier){
       <span class="tcnt">${gloves.length} items</span>
     </div>
     <table>
-      <thead><tr><th></th><th>Name</th><th>Value</th><th>Demand</th><th>Trend</th><th>How to obtain</th><th>Class</th><th></th></tr></thead>
+      <thead><tr><th></th><th>Name</th><th>Value</th><th>Demand</th><th>Trend</th><th>How to obtain</th><th>Class</th>${tierColHeader}<th></th></tr></thead>
       <tbody>${rows}</tbody>
     </table>
   </div>`;
@@ -789,13 +850,94 @@ function renderTierSection(tier){
       <div><h1>${m.label}</h1><div class="tier-note">${m.note}</div></div>
       <div class="tier-cnt">${gloves.length} gloves</div>
     </div>
-    ${buildTable(gloves,tier)}
+    ${buildTable(gloves,false)}
   </div>`;
 }
+
+/* ── CLASS PAGE ── */
+function showClassPage(jumpTo){
+  view="class";setActiveTab(9);
+  document.getElementById('class-page').classList.add('active');
+  document.getElementById('home-page').classList.remove('active');
+  document.getElementById('tier-page').classList.remove('active');
+  ['trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById('trade-fab').classList.remove('hide');
+  if(jumpTo) activeClassFilter=jumpTo;
+  renderClassPage();
+  if(jumpTo){
+    setTimeout(()=>{
+      const el=document.getElementById('cls-sec-'+jumpTo);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },80);
+  }
+}
+
+function setClassFilter(cls){
+  activeClassFilter=cls;
+  renderClassPage();
+  if(cls!=='ALL'){
+    setTimeout(()=>{
+      const el=document.getElementById('cls-sec-'+cls);
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+    },80);
+  }
+}
+
+function renderClassPage(){
+  const pg=document.getElementById('class-page');
+  const classes = activeClassFilter==='ALL' ? CLASS_ORDER : [activeClassFilter];
+  const totalCls = CLASS_ORDER.filter(c=>GLOVES.some(g=>g.cls===c)).length;
+
+  // Quick-jump nav pills
+  const navPills = `<div class="cls-nav">
+    <button class="cls-nav-btn cnb-ALL${activeClassFilter==='ALL'?' active':''}" onclick="setClassFilter('ALL')" style="${activeClassFilter==='ALL'?'background:var(--surface3);border-color:var(--border2);color:var(--text)':''}">All Classes</button>
+    ${CLASS_ORDER.filter(c=>GLOVES.some(g=>g.cls===c)).map(c=>{
+      const m=CLASS_META[c];
+      const active=activeClassFilter===c;
+      return`<button class="cls-nav-btn cnb-${c}${active?' active':''}" onclick="setClassFilter('${c}')">${c}</button>`;
+    }).join('')}
+  </div>`;
+
+  const sections = classes.filter(c=>GLOVES.some(g=>g.cls===c)).map(c=>{
+    const m=CLASS_META[c];
+    const gloves=sortGloves(filterGloves(GLOVES.filter(g=>g.cls===c)));
+    const topV = gloves.filter(g=>isFinite(g.v));
+    const highestV = topV.length ? Math.max(...topV.map(g=>g.v)) : 0;
+    const risingCount = gloves.filter(g=>g.trend==='up').length;
+    return`<div class="class-section" id="cls-sec-${c}">
+      <div class="class-hero" style="background:${m.bg};border-color:${m.border}">
+        <span class="class-hero-badge cpill cls-${c}" style="font-size:22px;padding:8px 18px">${c}</span>
+        <div class="class-hero-info">
+          <div class="class-hero-name">${m.label}</div>
+          <div class="class-hero-desc">${m.desc}</div>
+          <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+            <span style="font-size:11px;color:var(--text-dim);font-family:'DM Mono',monospace">Top value: <span style="color:${m.color}">${highestV?fmtN(highestV):'N/A'}</span></span>
+            ${risingCount?`<span style="font-size:11px;color:#4ade80;font-family:'DM Mono',monospace">↑ ${risingCount} rising</span>`:''}
+          </div>
+        </div>
+        <div class="class-hero-cnt"><span>${gloves.length}</span>gloves</div>
+      </div>
+      ${buildTable(gloves,true)}
+    </div>`;
+  }).join('');
+
+  pg.innerHTML=`
+    <div class="page-header">
+      <h1>Class Index</h1>
+      <p>Gloves grouped by their <strong>Class rating</strong> — a separate classification from Tier that reflects rarity, origin, and craft complexity. ${totalCls} classes active.</p>
+    </div>
+    <div class="class-intro">
+      <strong>Class vs Tier explained:</strong> A glove's <strong>Tier</strong> (X, SS, S…) reflects its <em>trade value</em> in the current market. Its <strong>Class</strong> (shown as a pill in every table) reflects its <em>rarity category</em> — based on how it was obtained, crafting cost, and scarcity. A D-Tier glove can be Class A if it's hard to obtain. Use Class to gauge <em>how rare</em> something is, use Tier for <em>what it's worth</em>.
+    </div>
+    ${navPills}
+    ${sections}
+  `;
+}
+
 function showHome(){
   view="home";setActiveTab(0);
   document.getElementById('home-page').classList.add('active');
-  ['tier-page','trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['tier-page','class-page','trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.remove('hide');
   renderHome();
 }
@@ -845,6 +987,20 @@ function renderHome(){
         <span class="rc-trend" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim)">${GLOVES.filter(g=>g.t===t).length} items</span>
       </div>`;
     }).join('')}</div>
+    <div class="sec-title">🏷️ Browse by Class</div>
+    <div class="recent-grid">${CLASS_ORDER.filter(c=>GLOVES.some(g=>g.cls===c)).map(c=>{
+      const m=CLASS_META[c];
+      const count=GLOVES.filter(g=>g.cls===c).length;
+      const top=GLOVES.filter(g=>g.cls===c&&isFinite(g.v)).sort((a,b)=>b.v-a.v)[0];
+      return`<div class="rc" onclick="showClassPage('${c}')" style="border-color:${m.border}">
+        <span class="cpill cls-${c}" style="font-size:11px;padding:3px 9px">${c}</span>
+        <div class="rc-info">
+          <div class="rc-name">${m.label}</div>
+          <div class="rc-meta">${top?top.n+' · top item':'—'}</div>
+        </div>
+        <span style="font-family:'DM Mono',monospace;font-size:11px;color:var(--text-dim);flex-shrink:0">${count} items</span>
+      </div>`;
+    }).join('')}</div>
     <div class="disclaimer"><span>⚠️</span><span><strong>Disclaimer:</strong> Values are community estimates — not guaranteed prices. Markets fluctuate. Always research before trading. Last updated: <strong>May 2025</strong></span></div>
   `;
 }
@@ -852,7 +1008,7 @@ function showAll(){
   view="ALL";setActiveTab(1);
   document.getElementById('tier-page').classList.add('active');
   document.getElementById('home-page').classList.remove('active');
-  ['trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['class-page','trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.remove('hide');
   renderPage();
 }
@@ -862,28 +1018,28 @@ function showTier(t){
   setActiveTab(idx[t]||1);
   document.getElementById('tier-page').classList.add('active');
   document.getElementById('home-page').classList.remove('active');
-  ['trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['class-page','trade-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.remove('hide');
   renderPage();
 }
 function showTrade(){
-  view="trade";setActiveTab(9);
+  view="trade";setActiveTab(10);
   document.getElementById('trade-page').classList.add('active');
-  ['home-page','tier-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['home-page','tier-page','class-page','updates-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.add('hide');
   renderTrade();renderMini();
 }
 function showUpdates(){
-  view="updates";setActiveTab(10);
+  view="updates";setActiveTab(11);
   document.getElementById('updates-page').classList.add('active');
-  ['home-page','tier-page','trade-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['home-page','tier-page','class-page','trade-page','wishlist-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.remove('hide');
   renderChangelog();
 }
 function showWishlist(){
-  view="wishlist";setActiveTab(11);
+  view="wishlist";setActiveTab(12);
   document.getElementById('wishlist-page').classList.add('active');
-  ['home-page','tier-page','trade-page','updates-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  ['home-page','tier-page','class-page','trade-page','updates-page'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById('trade-fab').classList.remove('hide');
   renderWishlist();
 }
@@ -897,23 +1053,29 @@ function renderPage(){
   if(view==="ALL"){pg.innerHTML=TIERS.map(t=>renderTierSection(t)).join('');}
   else{pg.innerHTML=renderTierSection(view);}
 }
-function onSearch(q){searchQ=q;if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();}
+function onSearch(q){searchQ=q;
+  if(view==="class")renderClassPage();
+  else if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();
+}
 function toggleF(btn){
   const f=btn.dataset.f,v=btn.dataset.v;
   if(activeFilters[f].has(v)){activeFilters[f].delete(v);btn.classList.remove('on');}
   else{activeFilters[f].add(v);btn.classList.add('on');}
-  if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();
+  if(view==="class")renderClassPage();
+  else if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();
 }
 function clearFilters(){
   activeFilters={demand:new Set(),trend:new Set()};
   document.querySelectorAll('.fchip').forEach(c=>c.classList.remove('on'));
   document.getElementById('vmin').value='';
   document.getElementById('vmax').value='';
-  if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();
+  if(view==="class")renderClassPage();
+  else if(view!=="home"&&view!=="trade"&&view!=="updates"&&view!=="wishlist")renderPage();
 }
 function setSort(by){
   if(sortBy===by)sortDir*=-1;else{sortBy=by;sortDir=1;}
-  renderPage();
+  if(view==="class")renderClassPage();
+  else renderPage();
 }
 function setTheme(t,lbl){
   document.documentElement.setAttribute('data-theme',t);
@@ -1054,10 +1216,11 @@ function openCmpModal(){
   const items=cmpItems.map(n=>GLOVES.find(g=>g.n===n)).filter(Boolean);
   const maxV=Math.max(...items.filter(g=>isFinite(g.v)).map(g=>g.v));
   document.getElementById('cmp-modal-body').innerHTML=`<table class="cmp-tbl">
-    <thead><tr><th>Name</th><th>Tier</th><th>Value</th><th>Demand</th><th>Trend</th><th>How to get</th></tr></thead>
+    <thead><tr><th>Name</th><th>Tier</th><th>Class</th><th>Value</th><th>Demand</th><th>Trend</th><th>How to get</th></tr></thead>
     <tbody>${items.map(g=>`<tr>
       <td><span class="cmp-n">${g.n}</span></td>
       <td><span class="cpill cls-${g.t}">${g.t}</span></td>
+      <td><span class="cpill cls-${g.cls}">${g.cls}</span></td>
       <td><span class="cmp-v">${fmtV(g)}</span>${isFinite(g.v)&&g.v===maxV?'<div class="cmp-win">★ Highest value</div>':''}</td>
       <td><span class="dem ${demClass(g.d)}">${g.d}</span></td>
       <td>${trendIcon(g.trend)}</td>
